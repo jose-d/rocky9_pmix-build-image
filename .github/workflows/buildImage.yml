@@ -2,10 +2,6 @@ name: Build Rocky Linux 9 docker image for PMI-X build
 run-name: ${{ github.actor }} is attempting to build pmi-x docker image 🚀
 on: workflow_dispatch
 permissions: write-all
-env:
-  # github image repository url - used to cache docker images
-  BASEIMAGE_URL: ghcr.io/jose-d/rocky9_pmix-build-image:latest
-
 jobs:
 
   build_base9_build-image:
@@ -31,4 +27,4 @@ jobs:
       with:
         context: "{{defaultContext}}"
         push: true
-        tags: ${{ env.BASEIMAGE_URL }}
+        tags: ghcr.io/${{ github.repository }}:latest
